@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : MariaDB
- Source Server Type    : MariaDB
- Source Server Version : 100138
+ Source Server         : mysql
+ Source Server Type    : MySQL
+ Source Server Version : 80015
  Source Host           : localhost:3306
  Source Schema         : mailserver
 
- Target Server Type    : MariaDB
- Target Server Version : 100138
+ Target Server Type    : MySQL
+ Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 28/03/2019 10:22:33
+ Date: 02/04/2019 15:57:11
 */
 
 SET NAMES utf8mb4;
@@ -56,9 +56,6 @@ CREATE TABLE `mail`  (
   `mail_subject` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '邮件主题',
   `mail_content` varchar(1023) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '邮件内容',
   `mail_date` datetime(0) NULL DEFAULT NULL COMMENT '发送邮件时间',
-  `mail_MIMEversion` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT 'MIME版本，在邮件头部标识',
-  `mail_contentType` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '邮件类型，常见的简单类型有text/plain(纯文本)和text/html(超文本)，以及常见的multipart类型有三种：multipart/mixed, multipart/related和multipart/alternative',
-  `mail_transferEncoding` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '传输编码方式，MIME常见的有Base64和QP',
   `mail_state` int(2) NULL DEFAULT NULL COMMENT '邮件的状态，0：未发送，1：发送中（基本不会看到这个状态，除非网络巨卡），2：已发送，3：已读（这个不知道好不好实现，先写着吧）',
   PRIMARY KEY (`mail_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '保存邮件的表' ROW_FORMAT = Compact;
