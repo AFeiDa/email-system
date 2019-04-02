@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class MailBean {
 
-    private String from; // 发件人
-    private String to; // 收件人
-    private String subject; // 主题
-    private String content; // 内容
-    private Date date; // 发件时间
+    private String from = null; // 发件人
+    private String to = null; // 收件人
+    private String subject = null; // 主题
+    private String content = null; // 内容
+    private Date date = null; // 发件时间
 
     public MailBean() {
         date = new Date();

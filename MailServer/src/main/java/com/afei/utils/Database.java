@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Database {
 
-    private static String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private Connection conn;
     private PreparedStatement stmt = null;
     private boolean isLinked = false;
@@ -20,7 +20,7 @@ public class Database {
             System.err.println("Class not found");
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/newsys?&serverTimezone=GMT", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mailserver?&serverTimezone=GMT", "root", "");
             isLinked = true;
 
         } catch (SQLException se) {
@@ -126,6 +126,12 @@ public class Database {
             e.printStackTrace();
         }
         return cnt;
+    }
+
+    public static void main(String[] args) {
+        Database db = new Database();
+        ResultSet rs = db.executeQuery("SELECT * FROM USER;");
+        System.err.println(resultCount(rs));
     }
 
 }
