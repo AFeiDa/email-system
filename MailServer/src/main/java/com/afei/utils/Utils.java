@@ -1,4 +1,4 @@
-package com.afei;
+package com.afei.utils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -10,13 +10,6 @@ import javax.swing.SwingUtilities;
  * @author AFei
  */
 public class Utils {
-    /*
-     * public static void run(final JFrame f, final int width, final int height) {
-     * SwingUtilities.invokeLater(new Runnable() { public void run() {
-     * f.setTitle(f.getClass().getSimpleName());
-     * f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); f.setSize(width, height);
-     * f.setVisible(true); } }); }
-     */
 
     // 创建一个名为title的窗口
     public static void run(final JFrame f, final int width, final int height, final String title) {

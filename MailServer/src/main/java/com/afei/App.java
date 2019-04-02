@@ -27,10 +27,10 @@
 package com.afei;
 
 import com.afei.panels.*;
+import com.afei.utils.*;
 
 public class App {
     public static void main(String[] args) {
-
         Utils.run(new TabbedPanel(), 800, 600, "肥大邮件服务器");
     }
 }
