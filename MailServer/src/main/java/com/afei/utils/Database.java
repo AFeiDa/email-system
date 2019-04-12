@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Database {
 
@@ -20,7 +22,7 @@ public class Database {
             System.err.println("Class not found");
         }
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mailserver?&serverTimezone=GMT", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mailsystem?&serverTimezone=GMT", "root", "");
             isLinked = true;
 
         } catch (SQLException se) {
@@ -128,10 +130,39 @@ public class Database {
         return cnt;
     }
 
-    public static void main(String[] args) {
+    public static String utilDateToSqlDate(java.util.Date d) {
+        return new Timestamp(d.getTime()).toString();
+    }
+
+    public static java.util.Date sqlDateToUtilDate(String d) {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        java.util.Date date = null;
+        try {
+            date = format.parse(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public static void main(String[] args)  {
         Database db = new Database();
-        ResultSet rs = db.executeQuery("SELECT * FROM USER;");
-        System.err.println(resultCount(rs));
+        ResultSet rs = db.executeQuery("SELECT mail_date FROM MAIL;");
+        
+        try {
+            while (rs.next()) {
+                String d = rs.getString(1);
+                System.out.println(d);
+                java.util.Date date = Database.sqlDateToUtilDate(d);
+                System.out.println(date.toString());
+                System.out.println(Database.utilDateToSqlDate(date));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

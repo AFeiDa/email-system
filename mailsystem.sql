@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 80015
  Source Host           : localhost:3306
- Source Schema         : mailserver
+ Source Schema         : mailsystem
 
  Target Server Type    : MySQL
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 02/04/2019 15:57:11
+ Date: 12/04/2019 11:21:35
 */
 
 SET NAMES utf8mb4;
@@ -58,7 +58,7 @@ CREATE TABLE `mail`  (
   `mail_date` datetime(0) NULL DEFAULT NULL COMMENT '发送邮件时间',
   `mail_state` int(2) NULL DEFAULT NULL COMMENT '邮件的状态，0：未发送，1：发送中（基本不会看到这个状态，除非网络巨卡），2：已发送，3：已读（这个不知道好不好实现，先写着吧）',
   PRIMARY KEY (`mail_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '保存邮件的表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '保存邮件的表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for user
@@ -68,7 +68,8 @@ CREATE TABLE `user`  (
   `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `user_name` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '用户名',
   `user_password` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '用户密码',
+  `user_mailstorage` int(11) NULL DEFAULT 2097152 COMMENT '用户邮箱的剩余存储空间，最大2M (2097152B)',
   PRIMARY KEY (`user_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '存储用户信息的表\r\nUSER_PASSWORD字段加密后存储' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '存储用户信息的表\r\nUSER_PASSWORD字段加密后存储' ROW_FORMAT = Compact;
 
 SET FOREIGN_KEY_CHECKS = 1;
