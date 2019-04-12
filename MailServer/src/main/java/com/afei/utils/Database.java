@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Vector;
 
 public class Database {
 
@@ -73,9 +74,13 @@ public class Database {
         return isLinked;
     }
 
-    public int executeUpdate(String sql) {
+    public int executeUpdate(String sql, Vector<String> v){
         try {
             stmt = conn.prepareStatement(sql);
+            int sz = v.size();
+            for(int i = 0; i < sz; ++ i) {
+                stmt.setString(i+1, v.get(i));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,9 +93,13 @@ public class Database {
         return ret;
     }
 
-    public boolean execute(String sql) {
+    public boolean execute(String sql, Vector<String> v) {
         try {
             stmt = conn.prepareStatement(sql);
+            int sz = v.size();
+            for(int i = 0; i < sz; ++ i) {
+                stmt.setString(i+1, v.get(i));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,9 +112,13 @@ public class Database {
         return ret;
     }
 
-    public ResultSet executeQuery(String sql) {
+    public ResultSet executeQuery(String sql, Vector<String> v) {
         try {
             stmt = conn.prepareStatement(sql);
+            int sz = v.size();
+            for(int i = 0; i < sz; ++ i) {
+                stmt.setString(i+1, v.get(i));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,6 +137,7 @@ public class Database {
             while (rs.next()) {
                 ++cnt;
             }
+            rs.beforeFirst();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -149,9 +163,14 @@ public class Database {
 
     public static void main(String[] args)  {
         Database db = new Database();
-        ResultSet rs = db.executeQuery("SELECT mail_date FROM MAIL;");
+        Vector<String> v = new Vector<String>();
+        v.add("1");
+        ResultSet rs = db.executeQuery("SELECT mail_date FROM MAIL where 1 = ?;", v);
         
         try {
+            System.out.println(resultCount(rs));
+            System.out.println(resultCount(rs));
+
             while (rs.next()) {
                 String d = rs.getString(1);
                 System.out.println(d);
@@ -160,9 +179,7 @@ public class Database {
                 System.out.println(Database.utilDateToSqlDate(date));
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
 }
