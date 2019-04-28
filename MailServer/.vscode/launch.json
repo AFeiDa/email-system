@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - App",
+            "request": "launch",
+            "mainClass": "pers.afei.App",
+            "projectName": "MailServer"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Pop3Server",
             "request": "launch",
             "mainClass": "com.afei.protocols.pop3.Pop3Server",
