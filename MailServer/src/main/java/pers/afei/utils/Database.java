@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Vector;
 
 public class Database {
 
@@ -74,12 +73,12 @@ public class Database {
         return isLinked;
     }
 
-    public int executeUpdate(String sql, Vector<String> v){
+    public int executeUpdate(String sql, String... values){
         try {
             stmt = conn.prepareStatement(sql);
-            int sz = v.size();
-            for(int i = 0; i < sz; ++ i) {
-                stmt.setString(i+1, v.get(i));
+            int i = 1;
+            for(String str: values) {
+                stmt.setString(i ++, str);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,12 +92,12 @@ public class Database {
         return ret;
     }
 
-    public boolean execute(String sql, Vector<String> v) {
+    public boolean execute(String sql, String... values) {
         try {
             stmt = conn.prepareStatement(sql);
-            int sz = v.size();
-            for(int i = 0; i < sz; ++ i) {
-                stmt.setString(i+1, v.get(i));
+            int i = 1;
+            for(String str: values) {
+                stmt.setString(i ++, str);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,12 +111,12 @@ public class Database {
         return ret;
     }
 
-    public ResultSet executeQuery(String sql, Vector<String> v) {
+    public ResultSet executeQuery(String sql, String... values) {
         try {
             stmt = conn.prepareStatement(sql);
-            int sz = v.size();
-            for(int i = 0; i < sz; ++ i) {
-                stmt.setString(i+1, v.get(i));
+            int i = 1;
+            for(String str: values) {
+                stmt.setString(i ++, str);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,9 +162,7 @@ public class Database {
 
     public static void main(String[] args)  {
         Database db = new Database();
-        Vector<String> v = new Vector<String>();
-        v.add("1");
-        ResultSet rs = db.executeQuery("SELECT mail_date FROM MAIL where 1 = ?;", v);
+        ResultSet rs = db.executeQuery("SELECT mail_date FROM MAIL where 1 = ?;", "1");
         
         try {
             System.out.println(resultCount(rs));
