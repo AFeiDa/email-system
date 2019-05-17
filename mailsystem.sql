@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 12/04/2019 11:21:35
+ Date: 17/05/2019 23:48:58
 */
 
 SET NAMES utf8mb4;
@@ -56,7 +56,6 @@ CREATE TABLE `mail`  (
   `mail_subject` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '邮件主题',
   `mail_content` varchar(1023) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL COMMENT '邮件内容',
   `mail_date` datetime(0) NULL DEFAULT NULL COMMENT '发送邮件时间',
-  `mail_state` int(2) NULL DEFAULT NULL COMMENT '邮件的状态，0：未发送，1：发送中（基本不会看到这个状态，除非网络巨卡），2：已发送，3：已读（这个不知道好不好实现，先写着吧）',
   PRIMARY KEY (`mail_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci COMMENT = '保存邮件的表' ROW_FORMAT = Compact;
 

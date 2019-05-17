@@ -38,3 +38,7 @@
 * 建立连接: 建立TCP连接后进行STMP验证（HELO + AUTH)
 * 发送邮件: MAIL FROM(可选)，RCPT TO(必有)，data输入邮件内容，以\<CR>\<LF>.\<CR>\<LF>结束邮件输入
 * 释放连接: QUIT释放连接
+
+## POP3协议
+
+懒地写了。。。和SMTP类似地写就行了~~
