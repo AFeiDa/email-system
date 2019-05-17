@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SmtpServer",
+            "request": "launch",
+            "mainClass": "pers.afei.protocols.SmtpServer",
+            "projectName": "MailServer"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - App",
             "request": "launch",
             "mainClass": "pers.afei.App",
