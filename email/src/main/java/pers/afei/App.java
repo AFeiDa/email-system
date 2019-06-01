@@ -1,9 +1,7 @@
 package pers.afei;
 
-/**
- * Hello world!
- *
- */
+import com.afei.*;
+
 public class App 
 {
     public static void main( String[] args )
